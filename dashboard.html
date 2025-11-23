@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - CRUD</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dashboard-container">
+
+    <h1>Dashboard del CRUD</h1>
+
+    <div class="card">
+        <h2>Total de usuarios registrados:</h2>
+        <h3 id="totalUsuarios">0</h3>
+    </div>
+
+    <div class="card">
+        <h2>Lista de usuarios:</h2>
+        <ul id="listaUsuarios">
+            <li>No hay usuarios registrados aún</li>
+        </ul>
+    </div>
+
+    <a href="index.html" class="back-button">⬅ Volver al formulario</a>
+
+    <script>
+        // Cargar usuarios desde localStorage
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        const totalUsuarios = document.getElementById("totalUsuarios");
+        const listaUsuarios = document.getElementById("listaUsuarios");
+
+        // Mostrar total
+        totalUsuarios.textContent = usuarios.length;
+
+        // Mostrar usuarios
+        listaUsuarios.innerHTML = "";
+
+        if (usuarios.length === 0) {
+            listaUsuarios.innerHTML = "<li>No hay usuarios registrados aún</li>";
+        } else {
+            usuarios.forEach(u => {
+                const li = document.createElement("li");
+                li.textContent = `${u.nombre} - ${u.email}`;
+                listaUsuarios.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>
