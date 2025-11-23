@@ -53,9 +53,14 @@ function editarUsuario(index) {
 }
 
 function eliminarUsuario(index) {
+    const confirmar = confirm("¿Seguro que deseas eliminar este usuario?");
+
+    if (!confirmar) return;
+
     usuarios.splice(index, 1);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     mostrarUsuarios();
 }
+
 
 mostrarUsuarios();
