@@ -10,6 +10,12 @@ form.addEventListener("submit", (e) => {
     const nombre = document.getElementById("nombre").value;
     const email = document.getElementById("email").value;
 
+      // Validación
+    if (nombre.trim() === "" || email.trim() === "") {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
     if (editIndex === null) {
         usuarios.push({ nombre, email });
     } else {
